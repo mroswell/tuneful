@@ -35,8 +35,8 @@ class Song(Base):
         song = {
             "id": self.id,
             "file": {
-                "id": self.file_id,
-                "body": self.file_id.name
+                "id": self.file,
+                "body": self.file.name
             }
         }
         return song
