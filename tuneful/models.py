@@ -28,16 +28,16 @@ class Song(Base):
     __tablename__ = "songs"
 
     id = Column(Integer, primary_key=True)
-
-    file_id = relationship("File", uselist=False, backref="song")
+    file = relationship("File", uselist=False, backref="song")
 
     def as_dictionary(self):
         song = {
             "id": self.id,
-            "file": {
-                "id": self.file,
-                "body": self.file.name
-            }
+            # "file": {
+            #     "id": self.file.id,
+            #     "body": self.file.name
+            # }
+            "file": self.file.as_dictionary()
         }
         return song
 
@@ -46,14 +46,11 @@ class File(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
-
     song_id = Column(Integer, ForeignKey('songs.id'), nullable=False)
 
     def as_dictionary(self):
         file = {
-            "file": {
                 "id": self.id,
                 "body": self.name
-            }
         }
         return file
