@@ -11,7 +11,7 @@ from tuneful import app
 from database import session
 from utils import upload_path
 
-file_schema = {
+song_schema = {
     "properties": {
         "id" : {"type" : "integer"},
         "name": {"type": "string"}
